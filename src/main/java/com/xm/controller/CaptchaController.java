@@ -7,7 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+
 import javax.imageio.ImageIO;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 public class CaptchaController {
@@ -16,21 +23,24 @@ public class CaptchaController {
     private DefaultKaptcha defaultKaptcha;
 
     @GetMapping("/captcha")
-    public void getCaptcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        // 设置响应格式为图片
-        response.setContentType("image/jpeg");
-        response.setHeader("Pragma", "No-cache");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setDateHeader("Expires", 0);
-
+    public ResponseEntity<byte[]> getCaptcha(HttpServletRequest request) throws Exception {
         // 生成验证码文字
         String text = defaultKaptcha.createText();
-        // 将验证码文字保存到session
+        System.out.println(text);
         request.getSession().setAttribute("captcha", text);
+
         // 生成验证码图片
         BufferedImage image = defaultKaptcha.createImage(text);
-        // 将图片输出到响应中
-        ImageIO.write(image, "jpg", response.getOutputStream());
+
+        // 将图片转换为字节数组
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpg", baos);
+
+        // 设置响应头
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+
+        return new ResponseEntity<>(baos.toByteArray(), headers, HttpStatus.OK);
     }
 }
 

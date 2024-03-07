@@ -16,7 +16,7 @@ public class CorsConfig {
                 // 对所有路径应用CORS设置
                 registry.addMapping("/**")
                         // 允许从这些来源的跨域请求
-                        .allowedOrigins("http://127.0.0.1:3000")
+                        .allowedOrigins("http://localhost:3000")
                         // 允许发送这些请求方法
                         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                         // 允许这些头部
