@@ -14,8 +14,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public AjaxResponse login(@RequestBody User user ,HttpSession session) {
-        String sessionCaptcha = (String)session.getAttribute("captcha");
-        System.out.println(session.getAttribute("captcha"));
+        //String sessionCaptcha = (String)session.getAttribute("captcha");
         return new AjaxResponse(true, null);
     }
 }
