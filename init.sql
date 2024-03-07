@@ -8,7 +8,7 @@ CREATE TABLE C_User (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     user_name VARCHAR(255) NOT NULL,
     user_password VARCHAR(255) NOT NULL,
-    user_email VARCHAR(255) NOT NULL,
+    user_email VARCHAR(255),
     user_update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (user_name),
     UNIQUE (user_email)
@@ -43,3 +43,5 @@ CREATE TABLE R_RolePermission (
     FOREIGN KEY (rp_role_id) REFERENCES C_Role(role_id),
     FOREIGN KEY (rp_permission_id) REFERENCES C_Permission(permission_id)
 );
+
+INSERT INTO C_User (user_name, user_password) VALUES ('admin', '123456');
