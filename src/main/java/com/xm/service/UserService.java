@@ -11,7 +11,14 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User registerUser(User user) {
+    public User addUser(User user) {
         return userRepository.save(user);
     }
+
+    public User findByName(String name){
+        return userRepository.findByName(name);
+    }
+
+    
+
 }

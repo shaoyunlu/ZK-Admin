@@ -25,7 +25,6 @@ public class CaptchaController {
     public ResponseEntity<byte[]> getCaptcha(HttpServletRequest request) throws Exception {
         // 生成验证码文字
         String text = defaultKaptcha.createText();
-        System.out.println(text);
         request.getSession().setAttribute("captcha", text);
 
         // 生成验证码图片
