@@ -59,7 +59,7 @@ CREATE TABLE r_role_permission (
 INSERT INTO `c_user` (`user_name`, `user_password`) VALUES ('admin', '123456');
 INSERT INTO `c_role` (`role_name`, `role_desc`) VALUES ('管理员', '拥有系统的全部权限。');
 INSERT INTO `r_user_role` (`ur_user_id`,`ur_role_id`) VALUES (1 ,1);
-INSERT INTO `c_menu` (`menu_name`, `menu_parent_id`, `menu_url`, `menu_order`, `menu_status`, `menu_icon`) VALUES ('基础配置', 0, '/base-config', 1, 1, 'icon-config');
-INSERT INTO `c_menu` (`menu_name`, `menu_parent_id`, `menu_url`, `menu_order`, `menu_status`, `menu_icon`) VALUES ('用户管理', 1, '/user-management', 1, 1, 'icon-user');
-INSERT INTO `c_menu` (`menu_name`, `menu_parent_id`, `menu_url`, `menu_order`, `menu_status`, `menu_icon`) VALUES ('角色管理', 1, '/role-management', 2, 1, 'icon-role');
-INSERT INTO `c_menu` (`menu_name`, `menu_parent_id`, `menu_url`, `menu_order`, `menu_status`, `menu_icon`) VALUES ('权限管理', 1, '/permission-management', 3, 1, 'icon-permission');
+INSERT INTO `c_menu` (`menu_name`, `menu_parent_id`, `menu_url`, `menu_order`, `menu_status`, `menu_icon`) VALUES ('基础配置', 0, '', 1, 1, 'base');
+INSERT INTO `c_menu` (`menu_name`, `menu_parent_id`, `menu_url`, `menu_order`, `menu_status`, `menu_icon`) VALUES ('用户管理', 1, '/frame/user', 1, 1, '');
+INSERT INTO `c_menu` (`menu_name`, `menu_parent_id`, `menu_url`, `menu_order`, `menu_status`, `menu_icon`) VALUES ('角色管理', 1, '/frame/role', 2, 1, 'icon-role');
+INSERT INTO `c_menu` (`menu_name`, `menu_parent_id`, `menu_url`, `menu_order`, `menu_status`, `menu_icon`) VALUES ('权限管理', 1, '/frame/permission', 3, 1, 'icon-permission');
