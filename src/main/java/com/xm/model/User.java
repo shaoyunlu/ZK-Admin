@@ -16,15 +16,14 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "user_name")
+    @Column(name = "user_name" ,nullable = false)
     private String name;
 
-    @Column(name = "user_password")
+    @Column(name = "user_password" ,nullable = false)
     private String password;
 
     @Column(name = "user_email")
     private String email;
-
 
 
     // Getters and setters

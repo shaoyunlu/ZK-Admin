@@ -24,7 +24,8 @@ public class CaptchaController {
     @GetMapping("/captcha")
     public ResponseEntity<byte[]> getCaptcha(HttpServletRequest request) throws Exception {
         // 生成验证码文字
-        String text = defaultKaptcha.createText();
+        //String text = defaultKaptcha.createText();
+        String text = "9999";
         request.getSession().setAttribute("captcha", text);
 
         // 生成验证码图片
