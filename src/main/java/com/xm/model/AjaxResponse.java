@@ -1,9 +1,5 @@
 package com.xm.model;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class AjaxResponse {
     private Boolean success;
     private Object payLoad;
@@ -21,10 +17,6 @@ public class AjaxResponse {
 
     public static AjaxResponse fail(String message){
         return new AjaxResponse(false, null ,message);
-    }
-
-    public static AjaxResponse map(Map<Object,Object> map ,int total){
-        return new AjaxResponse(true, map, "操作成功");
     }
 
     public Boolean getSuccess() {

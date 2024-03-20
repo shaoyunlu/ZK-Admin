@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xm.model.AjaxResponse;
-import com.xm.model.User;
-import com.xm.service.UserService;
+import com.xm.model.Role;
+import com.xm.service.RoleService;
 
 @RestController
-public class UserController {
+public class RoleController {
 
     @Autowired
-    private UserService userService;
+    private RoleService roleService;
 
-    @GetMapping("/user/list")
-    public AjaxResponse getAllUsers(@RequestParam(value = "pageNum") int page,
+    @GetMapping("/role/list")
+    public AjaxResponse getAllRoles(@RequestParam(value = "pageNum") int page,
                                     @RequestParam(value = "pageSize") int size){
-        Page<User> pageInfo = userService.getAllUsers(page ,size);
+        Page<Role> pageInfo = roleService.getAllRoles(page, size);
 
         return AjaxResponse.ok(pageInfo);
     }
