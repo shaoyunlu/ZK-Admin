@@ -88,6 +88,14 @@ public class User {
         this.roles = roles;
     }
 
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
+
 
 
 }
