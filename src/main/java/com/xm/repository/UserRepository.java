@@ -13,7 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByName(String name);
 
-    @Query("SELECT u FROM User u JOIN FETCH u.roles")
-    Page<User> getAllWithRoles(Pageable pageable);
+    @Query("SELECT u FROM User u JOIN FETCH u.roles WHERE (:name IS NULL OR u.name LIKE %:name%)")
+    Page<User> getAllWithRoles(String name ,Pageable pageable);
 
 }

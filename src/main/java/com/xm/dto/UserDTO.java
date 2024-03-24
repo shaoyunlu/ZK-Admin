@@ -15,6 +15,8 @@ public class UserDto {
 
     private String email;
 
+    private String password;
+
     private Set<Role> roles = new HashSet<>();
 
     private Set<Long> roleIds;
@@ -68,6 +70,14 @@ public class UserDto {
 
     public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     
