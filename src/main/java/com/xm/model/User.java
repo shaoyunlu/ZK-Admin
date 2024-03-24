@@ -31,6 +31,9 @@ public class User {
     @Column(name = "user_name" ,nullable = false)
     private String name;
 
+    @Column(name = "user_real_name" ,nullable = false)
+    private String realName;
+
     @Column(name = "user_password" ,nullable = false)
     private String password;
 
@@ -94,6 +97,14 @@ public class User {
 
     public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
 

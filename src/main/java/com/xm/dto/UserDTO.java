@@ -7,11 +7,13 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xm.model.Role;
 
-public class UserDto {
+public class UserDto extends BaseDto{
 
     private Long id;
 
     private String name;
+
+    private String realName;
 
     private String email;
 
@@ -78,6 +80,14 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     

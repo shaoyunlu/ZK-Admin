@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS c_menu;
 CREATE TABLE c_user (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     user_name VARCHAR(255) NOT NULL,
+    user_real_name VARCHAR(255) NOT NULL,
     user_password VARCHAR(255) NOT NULL,
     user_email VARCHAR(255),
     user_update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -56,7 +57,7 @@ CREATE TABLE r_role_permission (
     FOREIGN KEY (rp_permission_id) REFERENCES c_permission(permission_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-INSERT INTO `c_user` (`user_name`, `user_password`) VALUES ('admin', '123456');
+INSERT INTO `c_user` (`user_name`, `user_real_name`,`user_password`) VALUES ('admin', 'admin','123456');
 INSERT INTO `c_role` (`role_name`, `role_desc`) VALUES ('管理员', '拥有系统的全部权限。');
 INSERT INTO `c_role` (`role_name`, `role_desc`) VALUES ('普通用户', '系统中的普通用户。');
 INSERT INTO `r_user_role` (`ur_user_id`,`ur_role_id`) VALUES (1 ,1);
