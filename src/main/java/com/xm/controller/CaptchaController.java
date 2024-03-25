@@ -1,6 +1,8 @@
 package com.xm.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.xm.util.XmConstants;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +28,7 @@ public class CaptchaController {
         // 生成验证码文字
         //String text = defaultKaptcha.createText();
         String text = "9999";
-        request.getSession().setAttribute("captcha", text);
+        request.getSession().setAttribute(XmConstants.CAPTCHA_KEY, text);
 
         // 生成验证码图片
         BufferedImage image = defaultKaptcha.createImage(text);
