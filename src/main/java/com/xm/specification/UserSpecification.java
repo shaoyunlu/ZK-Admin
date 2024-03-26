@@ -17,4 +17,9 @@ public class UserSpecification {
             return criteriaBuilder.or(namePredicate, nickNamePredicate);
         };
     }
+
+    public static Specification<User> nameIsNotAdmin() {
+        return (root, query, criteriaBuilder) ->
+                criteriaBuilder.notEqual(root.get("name"), "admin");
+    }
 }

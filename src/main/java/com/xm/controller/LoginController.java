@@ -2,6 +2,7 @@ package com.xm.controller;
 
 import java.util.Map;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +32,11 @@ public class LoginController {
         if (user == null){
             return AjaxResponse.fail("用户不存在");
         }
-        if (!user.getPassword().equals(jsonPayload.get("password"))){
+
+        System.out.println((String)jsonPayload.get("password"));
+        System.out.println(user.getPassword());
+
+        if (!BCrypt.checkpw((String)jsonPayload.get("password"), user.getPassword())){
             return AjaxResponse.fail("密码不正确");
         }
 
@@ -39,6 +44,14 @@ public class LoginController {
         session.setAttribute(XmConstants.SESSION_USER_KEY, user);
 
         return AjaxResponse.ok(userDto);
+    }
+
+    @PostMapping("/logout")
+    public AjaxResponse logout(HttpSession session){
+
+        session.setAttribute(XmConstants.SESSION_USER_KEY, null);
+
+        return AjaxResponse.ok(null);
     }
 
     private UserDto convertToDto(User user){

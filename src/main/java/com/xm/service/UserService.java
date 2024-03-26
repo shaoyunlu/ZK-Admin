@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,10 +30,6 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public User addUser(User user) {
-        return userRepository.save(user);
-    }
-
     public User findByName(String name){
         return userRepository.findByName(name);
     }
@@ -50,7 +47,8 @@ public class UserService {
             pageable = PageRequest.of(userDto.getPageNum(), userDto.getPageSize());
         }
 
-        Specification<User> spec = UserSpecification.nameOrRealNameContains(userDto.getName());
+        Specification<User> spec = Specification.where(UserSpecification.nameOrRealNameContains(userDto.getName()))
+                                                        .and(UserSpecification.nameIsNotAdmin());
         return userRepository.findAll(spec, pageable);
     }
 
@@ -60,7 +58,7 @@ public class UserService {
         user.setName(userDto.getName());
         user.setRealName(userDto.getRealName());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(BCrypt.hashpw(userDto.getPassword(), BCrypt.gensalt()));
 
         if (userDto.getRoleIds() != null && !userDto.getRoleIds().isEmpty()){
             Set<Role> roles = new HashSet<>(roleRepository.findAllById(userDto.getRoleIds()));
